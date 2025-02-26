@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Fetch news from the News API
   fetchNews();
 
   // Refresh news every hour
@@ -10,25 +9,27 @@ function fetchNews() {
   const newsList = document.getElementById('news-list');
   newsList.innerHTML = '<li class="loading">Loading news...</li>';
 
-  fetch('https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=9129dd2a32a94098aa31dc1b581ceb86')
+  const apiKey = "8b8fd76488bbdbdea4f3d5a882db5ed2";
+  const url = `https://gnews.io/api/v4/top-headlines?category=technology&lang=en&country=in&apikey=${apiKey}`;
+
+  fetch(url)
     .then(response => response.json())
     .then(data => {
       newsList.innerHTML = '';
 
       if (data && data.articles && data.articles.length > 0) {
-        // Iterate over the articles and create list items
         data.articles.forEach(article => {
           const listItem = document.createElement('li');
           const link = document.createElement('a');
           link.href = article.url;
           link.textContent = article.title;
-          link.target = '_blank'; // Open link in a new tab
+          link.target = '_blank';
           listItem.appendChild(link);
 
-          if (article.urlToImage) {
-            // Create image element
+          if (article.image) {
             const image = document.createElement('img');
-            image.src = article.urlToImage;
+            image.src = article.image;
+            image.alt = "News Image";
             listItem.appendChild(image);
           }
 
