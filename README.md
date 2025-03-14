@@ -1,6 +1,6 @@
 # Tech News Chrome Extension
 
-A Chrome extension providing real-time technology news updates using NewsAPI.
+A Chrome extension providing real-time technology news updates using GnewsAPI.
 
 ## Features
 - Displays the latest tech news with headlines and links
